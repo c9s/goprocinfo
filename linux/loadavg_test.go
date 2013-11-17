@@ -1,4 +1,4 @@
-package goproc
+package linux
 
 import "testing"
 
