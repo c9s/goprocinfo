@@ -8,4 +8,5 @@ func TestCPUStat(t *testing.T) {
 		t.Fatal("stat read fail")
 	}
 	_ = stat
+	t.Logf("%+v", stat)
 }

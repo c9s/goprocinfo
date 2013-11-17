@@ -7,8 +7,8 @@ import (
 )
 
 type Stat struct {
-	CPUStatAll *CPUStat
-	CPUStats   []*CPUStat
+	CPUStatAll CPUStat
+	CPUStats   []CPUStat
 }
 
 type CPUStat struct {
@@ -51,13 +51,13 @@ func ReadStat(path string) (*Stat, error) {
 
 	var stat Stat = Stat{}
 
-	for _, line := range lines {
+	for i, line := range lines {
 		if strings.HasPrefix(line, "cpu") {
 			if cpuStat := parseCPUStat(line); cpuStat != nil {
-				if stat.CPUStatAll == nil {
-					stat.CPUStatAll = cpuStat
+				if i == 0 {
+					stat.CPUStatAll = *cpuStat
 				} else {
-					stat.CPUStats = append(stat.CPUStats, cpuStat)
+					stat.CPUStats = append(stat.CPUStats, *cpuStat)
 				}
 			}
 		}
