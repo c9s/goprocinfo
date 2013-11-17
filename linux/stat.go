@@ -32,8 +32,7 @@ type CPUStat struct {
 	GuestNice uint64
 }
 
-func parseCPUStat(line string) *CPUStat {
-	fields := strings.Fields(line)
+func createCPUStat(fields []string) *CPUStat {
 	s := CPUStat{}
 	s.User, _ = strconv.ParseUint(fields[1], 10, 32)
 	s.Nice, _ = strconv.ParseUint(fields[2], 10, 32)
@@ -59,32 +58,30 @@ func ReadStat(path string) (*Stat, error) {
 	var stat Stat = Stat{}
 
 	for i, line := range lines {
-		if strings.HasPrefix(line, "cpu") {
-			if cpuStat := parseCPUStat(line); cpuStat != nil {
+		fields := strings.Fields(line)
+		if len(fields) == 0 {
+			continue
+		}
+		if fields[0] == "cpu" {
+			if cpuStat := createCPUStat(fields); cpuStat != nil {
 				if i == 0 {
 					stat.CPUStatAll = *cpuStat
 				} else {
 					stat.CPUStats = append(stat.CPUStats, *cpuStat)
 				}
 			}
-		} else if strings.HasPrefix(line, "intr") {
-			fields := strings.Fields(line)
+		} else if fields[0] == "intr" {
 			stat.Interrupts, _ = strconv.ParseUint(fields[1], 10, 64)
-		} else if strings.HasPrefix(line, "ctxt") {
-			fields := strings.Fields(line)
+		} else if fields[0] == "ctxt" {
 			stat.ContextSwitches, _ = strconv.ParseUint(fields[1], 10, 64)
-		} else if strings.HasPrefix(line, "btime") {
-			fields := strings.Fields(line)
+		} else if fields[0] == "btime" {
 			seconds, _ := strconv.ParseInt(fields[1], 10, 64)
 			stat.BootTime = time.Unix(seconds, 0)
-		} else if strings.HasPrefix(line, "processes") {
-			fields := strings.Fields(line)
+		} else if fields[0] == "processes" {
 			stat.Processes, _ = strconv.ParseUint(fields[1], 10, 64)
-		} else if strings.HasPrefix(line, "procs_running") {
-			fields := strings.Fields(line)
+		} else if fields[0] == "procs_running" {
 			stat.ProcsRunning, _ = strconv.ParseUint(fields[1], 10, 64)
-		} else if strings.HasPrefix(line, "procs_blocked") {
-			fields := strings.Fields(line)
+		} else if fields[0] == "procs_blocked" {
 			stat.ProcsBlocked, _ = strconv.ParseUint(fields[1], 10, 64)
 		}
 	}
