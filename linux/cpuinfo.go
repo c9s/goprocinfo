@@ -12,6 +12,10 @@ type CPUInfo struct {
 	Processors []Processor
 }
 
+func (self *CPUInfo) NumCPU() int {
+	return len(self.Processors)
+}
+
 type Processor struct {
 	Id        int64
 	VendorId  string
