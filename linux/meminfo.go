@@ -1,11 +1,12 @@
 package linux
 
 import (
-	"fmt"
 	"io/ioutil"
+	"strconv"
 	"strings"
 )
 
+/*
 type MemInfo struct {
 	Total      uint64
 	Free       uint64
@@ -15,34 +16,30 @@ type MemInfo struct {
 	Active     uint64
 	Inactive   uint64
 }
+*/
+type MemInfo map[string]uint64
 
-func ReadMemInfo(path string) (*MemInfo, error) {
+func parseMemInfo(content string) MemInfo {
+	lines := strings.Split(content, "\n")
+	var info = MemInfo{}
+	for _, line := range lines {
+		fields := strings.SplitN(line, ":", 2)
+		if len(fields) < 2 {
+			continue
+		}
+		keyField := fields[0]
+		valFields := strings.Fields(fields[1])
+		val, _ := strconv.ParseUint(valFields[0], 10, 64)
+		info[keyField] = val
+	}
+	return info
+}
+
+func ReadMemInfo(path string) (MemInfo, error) {
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	lines := strings.Split(string(b), "\n")
-	meminfo := MemInfo{}
-	if _, err := fmt.Sscanf(lines[0], "MemTotal: %d kB", &meminfo.Total); err != nil {
-		return nil, err
-	}
-	if _, err := fmt.Sscanf(lines[1], "MemFree: %d kB", &meminfo.Free); err != nil {
-		return nil, err
-	}
-	if _, err := fmt.Sscanf(lines[2], "Buffers: %d kB", &meminfo.Buffers); err != nil {
-		return nil, err
-	}
-	if _, err := fmt.Sscanf(lines[3], "Cached: %d kB", &meminfo.Cached); err != nil {
-		return nil, err
-	}
-	if _, err := fmt.Sscanf(lines[4], "SwapCached: %d kB", &meminfo.SwapCached); err != nil {
-		return nil, err
-	}
-	if _, err := fmt.Sscanf(lines[5], "Active: %d kB", &meminfo.Active); err != nil {
-		return nil, err
-	}
-	if _, err := fmt.Sscanf(lines[6], "Inactive: %d kB", &meminfo.Inactive); err != nil {
-		return nil, err
-	}
-	return &meminfo, nil
+	info := parseMemInfo(string(b))
+	return info, nil
 }
