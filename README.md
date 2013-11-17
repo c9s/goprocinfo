@@ -9,7 +9,7 @@ Usage
 ```go
 import linuxproc "github.com/c9s/goprocinfo/linux"
 
-stat, err := linuxproc.ReadStat("proc/stat")
+stat, err := linuxproc.ReadStat("/proc/stat")
 if err != nil {
     t.Fatal("stat read fail")
 }

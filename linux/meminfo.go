@@ -40,6 +40,5 @@ func ReadMemInfo(path string) (MemInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	info := parseMemInfo(string(b))
-	return info, nil
+	return parseMemInfo(string(b)), nil
 }
