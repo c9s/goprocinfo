@@ -4,11 +4,16 @@ import (
 	"io/ioutil"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type Stat struct {
-	CPUStatAll CPUStat
-	CPUStats   []CPUStat
+	CPUStatAll      CPUStat
+	CPUStats        []CPUStat
+	Processes       uint64
+	Interrupts      uint64
+	ContextSwitches uint64
+	BootTime        time.Time
 }
 
 type CPUStat struct {
@@ -60,6 +65,19 @@ func ReadStat(path string) (*Stat, error) {
 					stat.CPUStats = append(stat.CPUStats, *cpuStat)
 				}
 			}
+		} else if strings.HasPrefix(line, "intr") {
+			fields := strings.Fields(line)
+			stat.Interrupts, _ = strconv.ParseUint(fields[1], 10, 64)
+		} else if strings.HasPrefix(line, "ctxt") {
+			fields := strings.Fields(line)
+			stat.ContextSwitches, _ = strconv.ParseUint(fields[1], 10, 64)
+		} else if strings.HasPrefix(line, "btime") {
+			fields := strings.Fields(line)
+			seconds, _ := strconv.ParseInt(fields[1], 10, 64)
+			stat.BootTime = time.Unix(seconds, 0)
+		} else if strings.HasPrefix(line, "processes") {
+			fields := strings.Fields(line)
+			stat.Processes, _ = strconv.ParseUint(fields[1], 10, 64)
 		}
 	}
 	return &stat, nil
