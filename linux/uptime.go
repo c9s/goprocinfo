@@ -23,6 +23,7 @@ func (self *Uptime) GetIdleDuration() time.Duration {
 func (self *Uptime) CalculateIdle() float64 {
 	// XXX
 	// num2/(num1*N)     # N = SMP CPU numbers
+	return 0
 }
 
 func ReadUptime(path string) (*Uptime, error) {
