@@ -10,10 +10,12 @@ import (
 type Stat struct {
 	CPUStatAll      CPUStat
 	CPUStats        []CPUStat
-	Processes       uint64
 	Interrupts      uint64
 	ContextSwitches uint64
 	BootTime        time.Time
+	Processes       uint64
+	ProcsRunning    uint64
+	ProcsBlocked    uint64
 }
 
 type CPUStat struct {
@@ -78,6 +80,12 @@ func ReadStat(path string) (*Stat, error) {
 		} else if strings.HasPrefix(line, "processes") {
 			fields := strings.Fields(line)
 			stat.Processes, _ = strconv.ParseUint(fields[1], 10, 64)
+		} else if strings.HasPrefix(line, "procs_running") {
+			fields := strings.Fields(line)
+			stat.ProcsRunning, _ = strconv.ParseUint(fields[1], 10, 64)
+		} else if strings.HasPrefix(line, "procs_blocked") {
+			fields := strings.Fields(line)
+			stat.ProcsBlocked, _ = strconv.ParseUint(fields[1], 10, 64)
 		}
 	}
 	return &stat, nil
