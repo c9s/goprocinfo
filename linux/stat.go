@@ -8,28 +8,28 @@ import (
 )
 
 type Stat struct {
-	CPUStatAll      CPUStat
-	CPUStats        []CPUStat
-	Interrupts      uint64
-	ContextSwitches uint64
-	BootTime        time.Time
-	Processes       uint64
-	ProcsRunning    uint64
-	ProcsBlocked    uint64
+	CPUStatAll      CPUStat   `json:"cpu_all"`
+	CPUStats        []CPUStat `json:"cpus"`
+	Interrupts      uint64    `json:"intr"`
+	ContextSwitches uint64    `json:"ctxt"`
+	BootTime        time.Time `json:"btime"`
+	Processes       uint64    `json:"processes"`
+	ProcsRunning    uint64    `json:"procs_running"`
+	ProcsBlocked    uint64    `json:"procs_blocked"`
 }
 
 type CPUStat struct {
-	Id        string
-	User      uint64
-	Nice      uint64
-	System    uint64
-	Idle      uint64
-	IOWait    uint64
-	IRQ       uint64
-	SoftIRQ   uint64
-	Steal     uint64
-	Guest     uint64
-	GuestNice uint64
+	Id        string `json:"id"`
+	User      uint64 `json:"user"`
+	Nice      uint64 `json:"nice"`
+	System    uint64 `json:"system"`
+	Idle      uint64 `json:"idle"`
+	IOWait    uint64 `json:"iowait"`
+	IRQ       uint64 `json:"irq"`
+	SoftIRQ   uint64 `json:"softirq"`
+	Steal     uint64 `json:"steal"`
+	Guest     uint64 `json:"guest"`
+	GuestNice uint64 `json:"guest_nice"`
 }
 
 func createCPUStat(fields []string) *CPUStat {

@@ -8,8 +8,8 @@ import (
 )
 
 type Uptime struct {
-	Total float64
-	Idle  float64
+	Total float64 `json:"total"`
+	Idle  float64 `json:"idle"`
 }
 
 func (self *Uptime) GetTotalDuration() time.Duration {

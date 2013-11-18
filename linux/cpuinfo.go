@@ -9,7 +9,7 @@ import (
 )
 
 type CPUInfo struct {
-	Processors []Processor
+	Processors []Processor `json:"processors"`
 }
 
 func (self *CPUInfo) NumCPU() int {
@@ -17,13 +17,13 @@ func (self *CPUInfo) NumCPU() int {
 }
 
 type Processor struct {
-	Id        int64
-	VendorId  string
-	Model     int64
-	ModelName string
-	Flags     []string
-	Cores     int64
-	MHz       float64
+	Id        int64    `json:"id"`
+	VendorId  string   `json:"vendor_id"`
+	Model     int64    `json:"model"`
+	ModelName string   `json:"model_name"`
+	Flags     []string `json:"flags"`
+	Cores     int64    `json:"cores"`
+	MHz       float64  `json:"mhz"`
 }
 
 var cpuinfoRegExp = regexp.MustCompile("([^:]*?)\\s*:\\s*(.*)$")

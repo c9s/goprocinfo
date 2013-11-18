@@ -7,9 +7,9 @@ import (
 )
 
 type LoadAvg struct {
-	Last1Min  float64
-	Last5Min  float64
-	Last15Min float64
+	Last1Min  float64 `json:"last1min"`
+	Last5Min  float64 `json:"last5min"`
+	Last15Min float64 `json:"last15min"`
 }
 
 func ReadLoadAvg(path string) (*LoadAvg, error) {
