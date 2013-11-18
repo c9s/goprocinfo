@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strconv"
 )
 
 type Process struct {
@@ -22,7 +23,7 @@ func ReadProcess(pid int, baseDir string) (*Process, error) {
 	var pidDir = filepath.Join(baseDir, strconv.Itoa(pid))
 
 	if _, err := os.Stat(pidDir); err != nil {
-		return nil, error
+		return nil, err
 	}
 	process := Process{}
 
@@ -30,6 +31,11 @@ func ReadProcess(pid int, baseDir string) (*Process, error) {
 	var statFile = filepath.Join(pidDir, "stat")
 	var statmFile = filepath.Join(pidDir, "statm")
 	var statusFile = filepath.Join(pidDir, "status")
+
+	_ = ioFile
+	_ = statFile
+	_ = statmFile
+	_ = statusFile
 
 	return &process, nil
 }
@@ -40,6 +46,7 @@ func ReadProcessStatus(path string) (*ProcessStatus, error) {
 		return nil, err
 	}
 	status := ProcessStatus{}
+	_ = b
 	return &status, nil
 }
 
