@@ -7,9 +7,16 @@ import (
 )
 
 type Process struct {
+	Status ProcessStatus `json:"status"`
+	Statm  ProcessStatm  `json:"statm"`
+	Stat   ProcessStat   `json:"stat"`
+	IO     ProcessIO     `json:"io"`
 }
 
 type ProcessStatus struct{}
+type ProcessIO struct{}
+type ProcessStatm struct{}
+type ProcessStat struct{}
 
 func ReadProcess(pid int, baseDir string) (*Process, error) {
 	var pidDir = filepath.Join(baseDir, strconv.Itoa(pid))
