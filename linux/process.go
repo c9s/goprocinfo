@@ -9,6 +9,8 @@ import (
 type Process struct {
 }
 
+type ProcessStatus struct{}
+
 func ReadProcess(pid int, baseDir string) (*Process, error) {
 	var pidDir = filepath.Join(baseDir, strconv.Itoa(pid))
 
@@ -23,6 +25,15 @@ func ReadProcess(pid int, baseDir string) (*Process, error) {
 	var statusFile = filepath.Join(pidDir, "status")
 
 	return &process, nil
+}
+
+func ReadProcessStatus(path string) (*ProcessStatus, error) {
+	b, err := ioutil.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	status := ProcessStatus{}
+	return &status, nil
 }
 
 // process info reader
