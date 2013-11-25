@@ -1,0 +1,12 @@
+13 1 202:0 / / rw,noatime - ext3 /dev/root rw,errors=remount-ro,barrier=0,data=writeback
+14 13 0:5 / /dev rw,relatime - devtmpfs devtmpfs rw,size=773868k,nr_inodes=179060,mode=755
+15 14 0:9 / /dev/pts rw,nosuid,noexec,relatime - devpts none rw,mode=600
+16 13 0:3 / /proc rw,nosuid,nodev,noexec,relatime - proc none rw
+17 13 0:13 / /sys rw,nosuid,nodev,noexec,relatime - sysfs none rw
+18 16 0:14 / /proc/sys/fs/binfmt_misc rw,nosuid,nodev,noexec,relatime - binfmt_misc none rw
+19 17 0:15 / /sys/fs/fuse/connections rw,relatime - fusectl none rw
+20 13 0:16 / /run rw,nosuid,noexec,relatime - tmpfs none rw,size=154816k,mode=755
+21 20 0:17 / /run/lock rw,nosuid,nodev,noexec,relatime - tmpfs none rw,size=5120k
+22 20 0:18 / /run/shm rw,nosuid,nodev,relatime - tmpfs none rw
+23 20 0:19 / /run/user rw,nosuid,nodev,noexec,relatime - tmpfs none rw,size=102400k,mode=755
+24 13 202:0 /var/sites/weneed2/webroot /ftp/weneed/webroot rw,noatime - ext3 /dev/root rw,errors=remount-ro,barrier=0,data=writeback

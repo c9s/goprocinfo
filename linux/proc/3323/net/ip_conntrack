@@ -1,0 +1,70 @@
+tcp      6 4 CLOSE src=123.194.138.126 dst=96.126.103.155 sport=46426 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=46426 [ASSURED] mark=0 use=2
+tcp      6 36 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61567 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61567 [ASSURED] mark=0 use=2
+tcp      6 114 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34051 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34051 [ASSURED] mark=0 use=2
+tcp      6 4 CLOSE src=123.194.138.126 dst=96.126.103.155 sport=27661 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=27661 [ASSURED] mark=0 use=2
+tcp      6 12 TIME_WAIT src=5.10.83.40 dst=96.126.103.155 sport=44740 dport=80 src=96.126.103.155 dst=5.10.83.40 sport=80 dport=44740 [ASSURED] mark=0 use=2
+tcp      6 60 TIME_WAIT src=61.219.36.71 dst=96.126.103.155 sport=50623 dport=80 src=96.126.103.155 dst=61.219.36.71 sport=80 dport=50623 [ASSURED] mark=0 use=2
+tcp      6 52 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61568 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61568 [ASSURED] mark=0 use=2
+tcp      6 86 TIME_WAIT src=38.111.147.86 dst=96.126.103.155 sport=39290 dport=80 src=96.126.103.155 dst=38.111.147.86 sport=80 dport=39290 [ASSURED] mark=0 use=2
+tcp      6 74 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61571 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61571 [ASSURED] mark=0 use=2
+tcp      6 431996 ESTABLISHED src=127.0.0.1 dst=127.0.0.1 sport=34053 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34053 [ASSURED] mark=0 use=2
+tcp      6 96 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34049 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34049 [ASSURED] mark=0 use=2
+tcp      6 431994 ESTABLISHED src=127.0.0.1 dst=127.0.0.1 sport=34056 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34056 [ASSURED] mark=0 use=2
+tcp      6 431997 ESTABLISHED src=123.194.138.126 dst=96.126.103.155 sport=54164 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=54164 [ASSURED] mark=0 use=2
+tcp      6 3 CLOSE src=123.194.138.126 dst=96.126.103.155 sport=22771 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=22771 [ASSURED] mark=0 use=2
+tcp      6 36 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61564 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61564 [ASSURED] mark=0 use=2
+udp      17 19 src=96.126.103.155 dst=74.207.241.5 sport=42712 dport=53 src=74.207.241.5 dst=96.126.103.155 sport=53 dport=42712 mark=0 use=2
+tcp      6 74 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61573 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61573 [ASSURED] mark=0 use=2
+tcp      6 46 TIME_WAIT src=66.249.74.135 dst=96.126.103.155 sport=40455 dport=80 src=96.126.103.155 dst=66.249.74.135 sport=80 dport=40455 [ASSURED] mark=0 use=2
+tcp      6 12 TIME_WAIT src=66.249.74.1 dst=96.126.103.155 sport=41239 dport=80 src=96.126.103.155 dst=66.249.74.1 sport=80 dport=41239 [ASSURED] mark=0 use=2
+tcp      6 36 TIME_WAIT src=5.10.83.96 dst=96.126.103.155 sport=55842 dport=80 src=96.126.103.155 dst=5.10.83.96 sport=80 dport=55842 [ASSURED] mark=0 use=2
+tcp      6 74 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61572 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61572 [ASSURED] mark=0 use=2
+tcp      6 49 TIME_WAIT src=96.126.103.155 dst=96.126.119.66 sport=57506 dport=443 src=96.126.119.66 dst=96.126.103.155 sport=443 dport=57506 [ASSURED] mark=0 use=2
+tcp      6 90 TIME_WAIT src=38.111.147.86 dst=96.126.103.155 sport=40746 dport=80 src=96.126.103.155 dst=38.111.147.86 sport=80 dport=40746 [ASSURED] mark=0 use=2
+tcp      6 6 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34041 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34041 [ASSURED] mark=0 use=2
+tcp      6 431982 ESTABLISHED src=127.0.0.1 dst=127.0.0.1 sport=40745 dport=27017 src=127.0.0.1 dst=127.0.0.1 sport=27017 dport=40745 [ASSURED] mark=0 use=2
+tcp      6 36 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61563 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61563 [ASSURED] mark=0 use=2
+tcp      6 54 SYN_RECV src=114.249.233.91 dst=96.126.103.155 sport=56156 dport=80 src=96.126.103.155 dst=114.249.233.91 sport=80 dport=56156 mark=0 use=2
+tcp      6 44 TIME_WAIT src=115.43.212.147 dst=96.126.103.155 sport=1945 dport=80 src=96.126.103.155 dst=115.43.212.147 sport=80 dport=1945 [ASSURED] mark=0 use=2
+udp      17 19 src=96.126.103.155 dst=74.207.241.5 sport=42649 dport=53 src=74.207.241.5 dst=96.126.103.155 sport=53 dport=42649 mark=0 use=2
+tcp      6 109 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=42956 dport=80 src=127.0.0.1 dst=127.0.0.1 sport=80 dport=42956 [ASSURED] mark=0 use=2
+tcp      6 59 CLOSE_WAIT src=123.194.138.126 dst=96.126.103.155 sport=63954 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=63954 [ASSURED] mark=0 use=2
+tcp      6 94 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34050 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34050 [ASSURED] mark=0 use=2
+tcp      6 74 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61569 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61569 [ASSURED] mark=0 use=2
+tcp      6 79 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34046 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34046 [ASSURED] mark=0 use=2
+tcp      6 4 CLOSE src=123.194.138.126 dst=96.126.103.155 sport=51289 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=51289 [ASSURED] mark=0 use=2
+tcp      6 86 TIME_WAIT src=66.249.74.93 dst=96.126.103.155 sport=41028 dport=80 src=96.126.103.155 dst=66.249.74.93 sport=80 dport=41028 [ASSURED] mark=0 use=2
+tcp      6 115 TIME_WAIT src=114.249.233.91 dst=96.126.103.155 sport=56175 dport=80 src=96.126.103.155 dst=114.249.233.91 sport=80 dport=56175 [ASSURED] mark=0 use=2
+tcp      6 36 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61566 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61566 [ASSURED] mark=0 use=2
+tcp      6 45 CLOSE_WAIT src=123.194.138.126 dst=96.126.103.155 sport=41324 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=41324 [ASSURED] mark=0 use=2
+tcp      6 4 TIME_WAIT src=101.13.172.1 dst=96.126.103.155 sport=24189 dport=80 src=96.126.103.155 dst=101.13.172.1 sport=80 dport=24189 [ASSURED] mark=0 use=2
+tcp      6 119 FIN_WAIT src=123.194.138.126 dst=96.126.103.155 sport=15585 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=15585 [ASSURED] mark=0 use=2
+udp      17 19 src=96.126.103.155 dst=74.207.241.5 sport=34813 dport=53 src=74.207.241.5 dst=96.126.103.155 sport=53 dport=34813 mark=0 use=2
+tcp      6 63 TIME_WAIT src=220.181.125.153 dst=96.126.103.155 sport=37844 dport=80 src=96.126.103.155 dst=220.181.125.153 sport=80 dport=37844 [ASSURED] mark=0 use=2
+tcp      6 115 TIME_WAIT src=140.135.113.248 dst=96.126.103.155 sport=50188 dport=80 src=96.126.103.155 dst=140.135.113.248 sport=80 dport=50188 [ASSURED] mark=0 use=2
+udp      17 21 src=96.126.103.155 dst=97.107.128.58 sport=45622 dport=123 src=97.107.128.58 dst=96.126.103.155 sport=123 dport=45622 mark=0 use=2
+tcp      6 81 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34048 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34048 [ASSURED] mark=0 use=2
+tcp      6 4 TIME_WAIT src=101.13.172.1 dst=96.126.103.155 sport=24188 dport=80 src=96.126.103.155 dst=101.13.172.1 sport=80 dport=24188 [ASSURED] mark=0 use=2
+tcp      6 428169 ESTABLISHED src=27.105.34.223 dst=96.126.103.155 sport=49570 dport=80 src=96.126.103.155 dst=27.105.34.223 sport=80 dport=49570 [ASSURED] mark=0 use=2
+tcp      6 347219 ESTABLISHED src=127.0.0.1 dst=127.0.0.1 sport=55930 dport=7003 src=127.0.0.1 dst=127.0.0.1 sport=7003 dport=55930 [ASSURED] mark=0 use=2
+tcp      6 48 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=42946 dport=80 src=127.0.0.1 dst=127.0.0.1 sport=80 dport=42946 [ASSURED] mark=0 use=2
+tcp      6 36 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61565 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61565 [ASSURED] mark=0 use=2
+udp      17 41 src=96.126.103.155 dst=74.207.241.5 sport=44343 dport=53 src=74.207.241.5 dst=96.126.103.155 sport=53 dport=44343 [ASSURED] mark=0 use=2
+tcp      6 59 CLOSE_WAIT src=123.194.138.126 dst=96.126.103.155 sport=18459 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=18459 [ASSURED] mark=0 use=2
+tcp      6 110 TIME_WAIT src=96.126.103.155 dst=96.126.119.66 sport=57516 dport=443 src=96.126.119.66 dst=96.126.103.155 sport=443 dport=57516 [ASSURED] mark=0 use=2
+tcp      6 414476 ESTABLISHED src=114.255.74.232 dst=96.126.103.155 sport=63952 dport=80 src=96.126.103.155 dst=114.255.74.232 sport=80 dport=63952 [ASSURED] mark=0 use=2
+udp      17 19 src=96.126.103.155 dst=74.207.241.5 sport=51841 dport=53 src=74.207.241.5 dst=96.126.103.155 sport=53 dport=51841 mark=0 use=2
+tcp      6 74 TIME_WAIT src=220.135.122.112 dst=96.126.103.155 sport=61570 dport=80 src=96.126.103.155 dst=220.135.122.112 sport=80 dport=61570 [ASSURED] mark=0 use=2
+tcp      6 12 TIME_WAIT src=101.226.66.21 dst=96.126.103.155 sport=59341 dport=80 src=96.126.103.155 dst=101.226.66.21 sport=80 dport=59341 [ASSURED] mark=0 use=2
+tcp      6 4 CLOSE src=123.194.138.126 dst=96.126.103.155 sport=54710 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=54710 [ASSURED] mark=0 use=2
+udp      17 48 src=96.126.103.155 dst=74.207.242.5 sport=33091 dport=53 src=74.207.242.5 dst=96.126.103.155 sport=53 dport=33091 [ASSURED] mark=0 use=2
+tcp      6 96 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34047 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34047 [ASSURED] mark=0 use=2
+tcp      6 94 TIME_WAIT src=157.55.32.106 dst=96.126.103.155 sport=33340 dport=80 src=96.126.103.155 dst=157.55.32.106 sport=80 dport=33340 [ASSURED] mark=0 use=2
+tcp      6 114 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34052 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34052 [ASSURED] mark=0 use=2
+tcp      6 299 ESTABLISHED src=114.42.179.129 dst=96.126.103.155 sport=59508 dport=22 src=96.126.103.155 dst=114.42.179.129 sport=22 dport=59508 [ASSURED] mark=0 use=2
+tcp      6 44 TIME_WAIT src=5.10.83.102 dst=96.126.103.155 sport=48857 dport=80 src=96.126.103.155 dst=5.10.83.102 sport=80 dport=48857 [ASSURED] mark=0 use=2
+tcp      6 431996 ESTABLISHED src=123.194.138.126 dst=96.126.103.155 sport=32249 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=32249 [ASSURED] mark=0 use=2
+tcp      6 12 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34042 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34042 [ASSURED] mark=0 use=2
+tcp      6 63 TIME_WAIT src=127.0.0.1 dst=127.0.0.1 sport=34043 dport=8080 src=127.0.0.1 dst=127.0.0.1 sport=8080 dport=34043 [ASSURED] mark=0 use=2
+tcp      6 94 TIME_WAIT src=123.194.138.126 dst=96.126.103.155 sport=33262 dport=80 src=96.126.103.155 dst=123.194.138.126 sport=80 dport=33262 [ASSURED] mark=0 use=2
+tcp      6 89 TIME_WAIT src=38.111.147.86 dst=96.126.103.155 sport=40483 dport=80 src=96.126.103.155 dst=38.111.147.86 sport=80 dport=40483 [ASSURED] mark=0 use=2

@@ -1,0 +1,2 @@
+IP address       HW type     Flags       HW address            Mask     Device
+96.126.103.1     0x1         0x2         00:00:0c:9f:f0:06     *        eth0

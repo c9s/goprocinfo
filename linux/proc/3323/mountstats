@@ -1,0 +1,13 @@
+device rootfs mounted on / with fstype rootfs
+device /dev/root mounted on / with fstype ext3
+device devtmpfs mounted on /dev with fstype devtmpfs
+device none mounted on /dev/pts with fstype devpts
+device none mounted on /proc with fstype proc
+device none mounted on /sys with fstype sysfs
+device none mounted on /proc/sys/fs/binfmt_misc with fstype binfmt_misc
+device none mounted on /sys/fs/fuse/connections with fstype fusectl
+device none mounted on /run with fstype tmpfs
+device none mounted on /run/lock with fstype tmpfs
+device none mounted on /run/shm with fstype tmpfs
+device none mounted on /run/user with fstype tmpfs
+device /dev/root mounted on /ftp/weneed/webroot with fstype ext3

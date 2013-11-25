@@ -1,0 +1,8 @@
+Type Device      Function
+ALL  eth0     packet_rcv+0x0/0x340
+8100          vlan_skb_recv+0x0/0x2b0
+0800          ip_rcv+0x0/0x320
+0011          llc_rcv+0x0/0x2f0
+0004          llc_rcv+0x0/0x2f0
+0806          arp_rcv+0x0/0x130
+86dd          ipv6_rcv+0x0/0x450

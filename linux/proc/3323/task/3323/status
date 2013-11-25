@@ -1,0 +1,36 @@
+Name:	proftpd
+State:	S (sleeping)
+Tgid:	3323
+Pid:	3323
+PPid:	1
+TracerPid:	0
+Uid:	0	111	0	111
+Gid:	65534	65534	65534	65534
+FDSize:	32
+Groups:	2001 65534 
+VmPeak:	   16216 kB
+VmSize:	   16212 kB
+VmLck:	       0 kB
+VmHWM:	    2092 kB
+VmRSS:	    2088 kB
+VmData:	     872 kB
+VmStk:	     272 kB
+VmExe:	     696 kB
+VmLib:	    9416 kB
+VmPTE:	      36 kB
+VmSwap:	       0 kB
+Threads:	1
+SigQ:	0/12091
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000010401000
+SigCgt:	000000018081ecef
+CapInh:	0000000000000000
+CapPrm:	ffffffffffffffff
+CapEff:	0000000000000000
+CapBnd:	ffffffffffffffff
+Cpus_allowed:	ff
+Cpus_allowed_list:	0-7
+voluntary_ctxt_switches:	5899
+nonvoluntary_ctxt_switches:	26

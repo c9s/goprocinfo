@@ -1,0 +1,13 @@
+rootfs / rootfs rw 0 0
+/dev/root / ext3 rw,noatime,errors=remount-ro,barrier=0,data=writeback 0 0
+devtmpfs /dev devtmpfs rw,relatime,size=773868k,nr_inodes=179060,mode=755 0 0
+none /dev/pts devpts rw,nosuid,noexec,relatime,mode=600 0 0
+none /proc proc rw,nosuid,nodev,noexec,relatime 0 0
+none /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+none /proc/sys/fs/binfmt_misc binfmt_misc rw,nosuid,nodev,noexec,relatime 0 0
+none /sys/fs/fuse/connections fusectl rw,relatime 0 0
+none /run tmpfs rw,nosuid,noexec,relatime,size=154816k,mode=755 0 0
+none /run/lock tmpfs rw,nosuid,nodev,noexec,relatime,size=5120k 0 0
+none /run/shm tmpfs rw,nosuid,nodev,relatime 0 0
+none /run/user tmpfs rw,nosuid,nodev,noexec,relatime,size=102400k,mode=755 0 0
+/dev/root /ftp/weneed/webroot ext3 rw,noatime,errors=remount-ro,barrier=0,data=writeback 0 0
