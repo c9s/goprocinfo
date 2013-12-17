@@ -1,7 +1,6 @@
 package linux
 
 import (
-	"fmt"
 	"io/ioutil"
 	"regexp"
 	"strconv"
@@ -54,8 +53,6 @@ func ReadCPUInfo(path string) (*CPUInfo, error) {
 		submatches := cpuinfoRegExp.FindStringSubmatch(line)
 		key = submatches[1]
 		value = submatches[2]
-
-		fmt.Printf("'%s'\n", key)
 
 		switch key {
 		case "processor":
