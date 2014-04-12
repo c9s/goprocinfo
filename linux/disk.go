@@ -10,7 +10,7 @@ type Disk struct {
 	Free uint64 `json:"free"`
 }
 
-func disk(path string) (*Disk, error) {
+func ReadDisk(path string) (*Disk, error) {
 	fs := syscall.Statfs_t{}
 	err := syscall.Statfs(path, &fs)
 	if err != nil {
