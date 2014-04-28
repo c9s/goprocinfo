@@ -62,7 +62,7 @@ func ReadStat(path string) (*Stat, error) {
 		if len(fields) == 0 {
 			continue
 		}
-		if fields[0] == "cpu" {
+		if fields[0][:3] == "cpu" {
 			if cpuStat := createCPUStat(fields); cpuStat != nil {
 				if i == 0 {
 					stat.CPUStatAll = *cpuStat
