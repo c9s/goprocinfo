@@ -39,14 +39,16 @@ func ReadCPUInfo(path string) (*CPUInfo, error) {
 	var cpuinfo = CPUInfo{}
 	var processor = &Processor{}
 
-	for _, line := range lines {
+	for i, line := range lines {
 		var key string
 		var value string
 
-		if len(line) == 0 {
+		if len(line) == 0 && i != len(lines)-1 {
 			// end of processor
 			cpuinfo.Processors = append(cpuinfo.Processors, *processor)
 			processor = &Processor{}
+			continue
+		} else if i == len(lines)-1 {
 			continue
 		}
 
