@@ -43,7 +43,9 @@ func createCPUStat(fields []string) *CPUStat {
 	s.SoftIRQ, _ = strconv.ParseUint(fields[7], 10, 32)
 	s.Steal, _ = strconv.ParseUint(fields[8], 10, 32)
 	s.Guest, _ = strconv.ParseUint(fields[9], 10, 32)
-	s.GuestNice, _ = strconv.ParseUint(fields[10], 10, 32)
+	if len(fields) > 10 {
+		s.GuestNice, _ = strconv.ParseUint(fields[10], 10, 32)
+	}
 	return &s
 }
 
