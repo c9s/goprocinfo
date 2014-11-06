@@ -34,16 +34,18 @@ type CPUStat struct {
 
 func createCPUStat(fields []string) *CPUStat {
 	s := CPUStat{}
-	s.User, _ = strconv.ParseUint(fields[1], 10, 32)
-	s.Nice, _ = strconv.ParseUint(fields[2], 10, 32)
-	s.System, _ = strconv.ParseUint(fields[3], 10, 32)
-	s.Idle, _ = strconv.ParseUint(fields[4], 10, 32)
-	s.IOWait, _ = strconv.ParseUint(fields[5], 10, 32)
-	s.IRQ, _ = strconv.ParseUint(fields[6], 10, 32)
-	s.SoftIRQ, _ = strconv.ParseUint(fields[7], 10, 32)
-	s.Steal, _ = strconv.ParseUint(fields[8], 10, 32)
-	s.Guest, _ = strconv.ParseUint(fields[9], 10, 32)
-	s.GuestNice, _ = strconv.ParseUint(fields[10], 10, 32)
+	s.User, _ = strconv.ParseUint(fields[1], 10, 64)
+	s.Nice, _ = strconv.ParseUint(fields[2], 10, 64)
+	s.System, _ = strconv.ParseUint(fields[3], 10, 64)
+	s.Idle, _ = strconv.ParseUint(fields[4], 10, 64)
+	s.IOWait, _ = strconv.ParseUint(fields[5], 10, 64)
+	s.IRQ, _ = strconv.ParseUint(fields[6], 10, 64)
+	s.SoftIRQ, _ = strconv.ParseUint(fields[7], 10, 64)
+	s.Steal, _ = strconv.ParseUint(fields[8], 10, 64)
+	s.Guest, _ = strconv.ParseUint(fields[9], 10, 64)
+	if len(fields) > 10 {
+		s.GuestNice, _ = strconv.ParseUint(fields[10], 10, 64)
+	}
 	return &s
 }
 
