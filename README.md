@@ -34,3 +34,8 @@ Reference
 ------------
 
 * http://www.mjmwired.net/kernel/Documentation/filesystems/proc.txt
+
+License
+-------
+
+goprocinfo is distributed under the MIT license.
