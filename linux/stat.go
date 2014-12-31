@@ -34,6 +34,7 @@ type CPUStat struct {
 
 func createCPUStat(fields []string) *CPUStat {
 	s := CPUStat{}
+	s.Id = fields[0]
 	s.User, _ = strconv.ParseUint(fields[1], 10, 64)
 	s.Nice, _ = strconv.ParseUint(fields[2], 10, 64)
 	s.System, _ = strconv.ParseUint(fields[3], 10, 64)
