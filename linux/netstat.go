@@ -58,6 +58,8 @@ type Netstat struct {
 	TCPForwardRetrans         uint64 `json:"tcp_forward_retrans"`
 	TCPSlowStartRetrans       uint64 `json:"tcp_slow_start_retrans"`
 	TCPTimeouts               uint64 `json:"tcp_timeouts"`
+	TCPLossProbes             uint64 `json:"tcp_loss_probes"`
+	TCPLossProbeRecovery      uint64 `json:"tcp_loss_probe_recovery"`
 	TCPRenoRecoveryFail       uint64 `json:"tcp_reno_recovery_fail"`
 	TCPSackRecoveryFail       uint64 `json:"tcp_sack_recovery_fail"`
 	TCPSchedulerFailed        uint64 `json:"tcp_scheduler_failed"`
@@ -88,6 +90,29 @@ type Netstat struct {
 	TCPDeferAcceptDrop        uint64 `json:"tcp_defer_accept_drop"`
 	IPReversePathFilter       uint64 `json:"ip_reverse_path_filter"`
 	TCPTimeWaitOverflow       uint64 `json:"tcp_time_wait_overflow"`
+	TCPReqQFullDoCookies      uint64 `json:"tcp_req_q_full_do_cookies"`
+	TCPReqQFullDrop           uint64 `json:"tcp_req_q_full_drop"`
+	TCPRetransFail            uint64 `json:"tcp_retrans_fail"`
+	TCPRcvCoalesce            uint64 `json:"tcp_rcv_coalesce"`
+	TCPOFOQueue               uint64 `json:"tcp_ofo_drop"`
+	TCPOFODrop                uint64 `json:"tcp_ofo_drop"`
+	TCPOFOMerge               uint64 `json:"tcp_ofo_merge"`
+	TCPChallengeACK           uint64 `json:"tcp_challenge_ack"`
+	TCPSYNChallenge           uint64 `json:"tcp_syn_challenge"`
+	TCPFastOpenActive         uint64 `json:"tcp_fast_open_active"`
+	TCPFastOpenActiveFail     uint64 `json:"tcp_fast_open_active_fail"`
+	TCPFastOpenPassive        uint64 `json:"tcp_fast_open_passive"`
+	TCPFastOpenPassiveFail    uint64 `json:"tcp_fast_open_passive_fail"`
+	TCPFastOpenListenOverflow uint64 `json:"tcp_fast_open_listen_overflow"`
+	TCPFastOpenCookieReqd     uint64 `json:"tcp_fast_open_cookie_reqd"`
+	TCPSpuriousRtxHostQueues  uint64 `json:"tcp_spurious_rtx_host_queues"`
+	BusyPollRxPackets         uint64 `json:"busy_poll_rx_packets"`
+	TCPAutoCorking            uint64 `json:"tcp_auto_corking"`
+	TCPFromZeroWindowAdv      uint64 `json:"tcp_from_zero_window_adv"`
+	TCPToZeroWindowAdv        uint64 `json:"tcp_to_zero_window_adv"`
+	TCPWantZeroWindowAdv      uint64 `json:"tcp_want_zero_window_adv"`
+	TCPSynRetrans             uint64 `json:"tcp_syn_retrans"`
+	TCPOrigDataSent           uint64 `json:"tcp_orig_data_sent"`
 	// IpExt
 	InNoRoutes      uint64 `json:"in_no_routes"`
 	InTruncatedPkts uint64 `json:"in_truncated_pkts"`
@@ -101,6 +126,11 @@ type Netstat struct {
 	OutMcastOctets  uint64 `json:"out_mcast_octets"`
 	InBcastOctets   uint64 `json:"in_bcast_octets"`
 	OutBcastOctets  uint64 `json:"out_bcast_octets"`
+	InCsumErrors    uint64 `json:"in_csum_errors"`
+	InNoECTPkts     uint64 `json:"in_no_ect_pkts"`
+	InECT1Pkts      uint64 `json:"in_ect1_pkts"`
+	InECT0Pkts      uint64 `json:"in_ect0_pkts"`
+	InCEPkts        uint64 `json:"in_ce_pkts"`
 }
 
 func ReadNetstat(path string) (*Netstat, error) {
