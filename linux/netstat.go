@@ -88,6 +88,19 @@ type Netstat struct {
 	TCPDeferAcceptDrop        uint64 `json:"tcp_defer_accept_drop"`
 	IPReversePathFilter       uint64 `json:"ip_reverse_path_filter"`
 	TCPTimeWaitOverflow       uint64 `json:"tcp_time_wait_overflow"`
+	// IpExt
+	InNoRoutes      uint64 `json:"in_no_routes"`
+	InTruncatedPkts uint64 `json:"in_truncated_pkts"`
+	InMcastPkts     uint64 `json:"in_mcast_pkts"`
+	OutMcastPkts    uint64 `json:"out_mcast_pkts"`
+	InBcastPkts     uint64 `json:"in_bcast_pkts"`
+	OutBcastPkts    uint64 `json:"out_bcast_pkts"`
+	InOctets        uint64 `json:"in_octets"`
+	OutOctets       uint64 `json:"out_octets"`
+	InMcastOctets   uint64 `json:"in_mcast_octets"`
+	OutMcastOctets  uint64 `json:"out_mcast_octets"`
+	InBcastOctets   uint64 `json:"in_bcast_octets"`
+	OutBcastOctets  uint64 `json:"out_bcast_octets"`
 }
 
 func ReadNetstat(path string) (*Netstat, error) {
