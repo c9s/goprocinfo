@@ -16,7 +16,7 @@ func TestNetstat(t *testing.T) {
 		t.Logf("%+v", expected)
 		t.Logf("%+v", read)
 
-		if err := compareExpectedReadFields(&expected, read); err != nil {
+		if err := compareExpectedReadFieldsNetstat(&expected, read); err != nil {
 			t.Error(err.Error())
 		}
 
@@ -35,7 +35,7 @@ func TestNetstat(t *testing.T) {
 		t.Logf("%+v", expected)
 		t.Logf("%+v", read)
 
-		if err := compareExpectedReadFields(&expected, read); err != nil {
+		if err := compareExpectedReadFieldsNetstat(&expected, read); err != nil {
 			t.Error(err.Error())
 		}
 
@@ -46,7 +46,7 @@ func TestNetstat(t *testing.T) {
 }
 
 // This is a helper function which makes it easier to track down errors in expected versus read values.
-func compareExpectedReadFields(expected *Netstat, read *Netstat) error {
+func compareExpectedReadFieldsNetstat(expected *Netstat, read *Netstat) error {
 	elemExpected := reflect.ValueOf(*expected)
 	typeOfElemExpected := elemExpected.Type()
 	elemRead := reflect.ValueOf(*read)
