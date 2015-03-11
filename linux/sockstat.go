@@ -43,7 +43,7 @@ func ReadSockStat(path string) (*SockStat, error) {
 	lines := strings.Split(string(data), "\n")
 
 	// Maps a meminfo metric to its value (i.e. MemTotal --> 100000)
-	statMap := make(map[string]uint64)
+	statMap := map[string]uint64{}
 
 	var sockStat SockStat = SockStat{}
 
