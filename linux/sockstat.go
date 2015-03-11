@@ -53,15 +53,18 @@ func ReadSockStat(path string) (*SockStat, error) {
 		}
 
 		statType := line[0 : strings.Index(line, ":")+1]
-		stats := pair(strings.Fields(line[strings.Index(line, ":")+1:]))
 
-		if len(stats) < 1 {
-			continue
-		}
-
-		for _, pair := range stats {
-			val, _ := strconv.ParseUint(pair._2, 10, 64)
-			statMap[statType+pair._1] = val
+		// The fields have this pattern: inuse 27 orphan 1 tw 23 alloc 31 mem 3
+		// The stats are grouped into pairs and need to be parsed and placed into the stat map.
+		key := ""
+		for k, v := range strings.Fields(line[strings.Index(line, ":")+1:]) {
+			// Every second field is a value.
+			if (k+1)%2 != 0 {
+				key = v
+				continue
+			}
+			val, _ := strconv.ParseUint(v, 10, 64)
+			statMap[statType+key] = val
 		}
 	}
 
@@ -76,19 +79,4 @@ func ReadSockStat(path string) (*SockStat, error) {
 	}
 
 	return &sockStat, nil
-}
-
-type StrPair struct {
-	_1 string
-	_2 string
-}
-
-func pair(strs []string) []StrPair {
-	pairs := make([]StrPair, 0)
-
-	for i := 1; i < len(strs); i = i + 2 {
-		pairs = append(pairs, StrPair{strs[i-1], strs[i]})
-	}
-
-	return pairs
 }
