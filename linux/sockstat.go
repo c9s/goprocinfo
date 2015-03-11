@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-type Sockstat struct {
+type SockStat struct {
 	// sockets:
 	SocketsUsed uint64 `json:"sockets_used" altname:"sockets:used"`
 
@@ -33,7 +33,7 @@ type Sockstat struct {
 	FRAGMemory uint64 `json:"frag_memory" altname:"FRAG:memory"`
 }
 
-func ReadSockstat(path string) (*Sockstat, error) {
+func ReadSockStat(path string) (*SockStat, error) {
 	data, err := ioutil.ReadFile(path)
 
 	if err != nil {
@@ -45,7 +45,7 @@ func ReadSockstat(path string) (*Sockstat, error) {
 	// Maps a meminfo metric to its value (i.e. MemTotal --> 100000)
 	statMap := make(map[string]uint64)
 
-	var sockstat Sockstat = Sockstat{}
+	var sockStat SockStat = SockStat{}
 
 	for _, line := range lines {
 		if strings.Index(line, ":") == -1 {
@@ -65,7 +65,7 @@ func ReadSockstat(path string) (*Sockstat, error) {
 		}
 	}
 
-	elem := reflect.ValueOf(&sockstat).Elem()
+	elem := reflect.ValueOf(&sockStat).Elem()
 	typeOfElem := elem.Type()
 
 	for i := 0; i < elem.NumField(); i++ {
@@ -75,7 +75,7 @@ func ReadSockstat(path string) (*Sockstat, error) {
 		}
 	}
 
-	return &sockstat, nil
+	return &sockStat, nil
 }
 
 type StrPair struct {
