@@ -16,10 +16,10 @@ type MemInfo struct {
 	SwapCached        uint64 `json:"swap_cached"`
 	Active            uint64 `json:"active"`
 	Inactive          uint64 `json:"inactive"`
-	ActiveAnon        uint64 `json:"active_anon" altname:"Active(anon)"`
-	InactiveAnon      uint64 `json:"inactive_anon" altname:"Inactive(anon)"`
-	ActiveFile        uint64 `json:"active_file" altname:"Active(file)"`
-	InactiveFile      uint64 `json:"inactive_file" altname:"Inactive(file)"`
+	ActiveAnon        uint64 `json:"active_anon" field:"Active(anon)"`
+	InactiveAnon      uint64 `json:"inactive_anon" field:"Inactive(anon)"`
+	ActiveFile        uint64 `json:"active_file" field:"Active(file)"`
+	InactiveFile      uint64 `json:"inactive_file" field:"Inactive(file)"`
 	Unevictable       uint64 `json:"unevictable"`
 	Mlocked           uint64 `json:"mlocked"`
 	SwapTotal         uint64 `json:"swap_total"`
@@ -87,7 +87,7 @@ func ReadMemInfo(path string) (*MemInfo, error) {
 			elem.Field(i).SetUint(val)
 			continue
 		}
-		val, ok = statMap[typeOfElem.Field(i).Tag.Get("altname")]
+		val, ok = statMap[typeOfElem.Field(i).Tag.Get("field")]
 		if ok {
 			elem.Field(i).SetUint(val)
 		}
