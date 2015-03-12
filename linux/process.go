@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"reflect"
 	"strconv"
 	"strings"
 )
@@ -16,27 +17,46 @@ type Process struct {
 }
 
 type ProcessStatus struct{}
-type ProcessIO struct{}
+
+type ProcessIO struct {
+	RChar               uint64 `json:"rchar" field:"rchar"`                                 // chars read
+	WChar               uint64 `json:"wchar" field:"wchar"`                                 // chars written
+	Syscr               uint64 `json:"syscr" field:"syscr"`                                 // read syscalls
+	Syscw               uint64 `json:"syscw" field:"syscw"`                                 // write syscalls
+	ReadBytes           uint64 `json:"read_bytes" field:"read_bytes"`                       // bytes read
+	WriteBytes          uint64 `json:"write_bytes" field:"write_bytes"`                     // bytes written
+	CancelledWriteBytes uint64 `json:"cancelled_write_bytes" field:"cancelled_write_bytes"` // bytes truncated
+}
+
 type ProcessStatm struct{}
 type ProcessStat struct{}
 
-func ReadProcess(pid int, baseDir string) (*Process, error) {
-	var pidDir = filepath.Join(baseDir, strconv.Itoa(pid))
+func ReadProcess(pid uint64, path string) (*Process, error) {
 
-	if _, err := os.Stat(pidDir); err != nil {
+	p := filepath.Join(path, strconv.FormatUint(pid, 10))
+
+	if _, err := os.Stat(p); err != nil {
 		return nil, err
 	}
+
 	process := Process{}
 
-	var ioFile = filepath.Join(pidDir, "io")
-	var statFile = filepath.Join(pidDir, "stat")
-	var statmFile = filepath.Join(pidDir, "statm")
-	var statusFile = filepath.Join(pidDir, "status")
+	ioPath := filepath.Join(p, "io")
+	statPath := filepath.Join(p, "stat")
+	statmPath := filepath.Join(p, "statm")
+	statusPath := filepath.Join(p, "status")
 
-	_ = ioFile
-	_ = statFile
-	_ = statmFile
-	_ = statusFile
+	io, err := ReadProcessIO(ioPath)
+
+	if err != nil {
+		return nil, err
+	}
+
+	_ = statPath
+	_ = statmPath
+	_ = statusPath
+
+	process.IO = *io
 
 	return &process, nil
 }
@@ -49,6 +69,58 @@ func ReadProcessStatus(path string) (*ProcessStatus, error) {
 	status := ProcessStatus{}
 	_ = b
 	return &status, nil
+}
+
+func ReadProcessIO(path string) (*ProcessIO, error) {
+
+	b, err := ioutil.ReadFile(path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	// Maps a io metric to its value (i.e. rchar --> 100000)
+	m := map[string]uint64{}
+
+	var io ProcessIO = ProcessIO{}
+
+	lines := strings.Split(string(b), "\n")
+
+	for _, line := range lines {
+
+		if strings.Index(line, ": ") == -1 {
+			continue
+		}
+
+		l := strings.Split(line, ": ")
+
+		k := l[0]
+		v, err := strconv.ParseUint(l[1], 10, 0)
+
+		if err != nil {
+			return nil, err
+		}
+
+		m[k] = v
+
+	}
+
+	e := reflect.ValueOf(&io).Elem()
+	t := e.Type()
+
+	for i := 0; i < e.NumField(); i++ {
+
+		k := t.Field(i).Tag.Get("field")
+
+		v, ok := m[k]
+
+		if ok {
+			e.Field(i).SetUint(v)
+		}
+
+	}
+
+	return &io, nil
 }
 
 func ReadMaxPID(path string) (uint64, error) {
