@@ -5,6 +5,63 @@ import (
 	"testing"
 )
 
+func TestReadProcessIO(t *testing.T) {
+
+	io, err := ReadProcessIO("proc/3323/io")
+
+	if err != nil {
+		t.Fatal("process io read fail", err)
+	}
+
+	expected := &ProcessIO{
+		RChar:               3865585,
+		WChar:               183294,
+		Syscr:               6697,
+		Syscw:               997,
+		ReadBytes:           90112,
+		WriteBytes:          45056,
+		CancelledWriteBytes: 0,
+	}
+
+	if !reflect.DeepEqual(io, expected) {
+		t.Error("not equal to expected", expected)
+	}
+
+	t.Logf("%+v", io)
+}
+
+func TestReadProcess(t *testing.T) {
+
+	p, err := ReadProcess(3323, "proc")
+
+	if err != nil {
+		t.Fatal("process read fail", err)
+	}
+
+	expected := &Process{
+
+		Status: ProcessStatus{},
+		Statm:  ProcessStatm{},
+		Stat:   ProcessStat{},
+
+		IO: ProcessIO{
+			RChar:               3865585,
+			WChar:               183294,
+			Syscr:               6697,
+			Syscw:               997,
+			ReadBytes:           90112,
+			WriteBytes:          45056,
+			CancelledWriteBytes: 0,
+		},
+	}
+
+	if !reflect.DeepEqual(p, expected) {
+		t.Error("not equal to expected", expected)
+	}
+
+	t.Logf("%+v", p)
+}
+
 func TestMaxPID(t *testing.T) {
 
 	max, err := ReadMaxPID("proc/sys_kernel_pid_max")
