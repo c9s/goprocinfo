@@ -30,6 +30,32 @@ func TestReadProcessIO(t *testing.T) {
 	t.Logf("%+v", io)
 }
 
+func TestReadProcessStatm(t *testing.T) {
+
+	statm, err := ReadProcessStatm("proc/3323/statm")
+
+	if err != nil {
+		t.Fatal("process io read fail", err)
+	}
+
+	expected := &ProcessStatm{
+		Size:     4053,
+		Resident: 522,
+		Share:    174,
+		Text:     174,
+		Lib:      0,
+		Data:     286,
+		Dirty:    0,
+	}
+
+	if !reflect.DeepEqual(statm, expected) {
+		t.Error("not equal to expected", expected)
+	}
+
+	t.Logf("%+v", statm)
+
+}
+
 func TestReadProcess(t *testing.T) {
 
 	p, err := ReadProcess(3323, "proc")
@@ -41,8 +67,16 @@ func TestReadProcess(t *testing.T) {
 	expected := &Process{
 
 		Status: ProcessStatus{},
-		Statm:  ProcessStatm{},
-		Stat:   ProcessStat{},
+		Statm: ProcessStatm{
+			Size:     4053,
+			Resident: 522,
+			Share:    174,
+			Text:     174,
+			Lib:      0,
+			Data:     286,
+			Dirty:    0,
+		},
+		Stat: ProcessStat{},
 
 		IO: ProcessIO{
 			RChar:               3865585,

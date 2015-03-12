@@ -28,7 +28,17 @@ type ProcessIO struct {
 	CancelledWriteBytes uint64 `json:"cancelled_write_bytes" field:"cancelled_write_bytes"` // bytes truncated
 }
 
-type ProcessStatm struct{}
+// Provides information about memory usage, measured in pages.
+type ProcessStatm struct {
+	Size     uint64 `json:"size"`     // total program size
+	Resident uint64 `json:"resident"` // resident set size
+	Share    uint64 `json:"share"`    // shared pages
+	Text     uint64 `json:"text"`     // text (code)
+	Lib      uint64 `json:"lib"`      // library (unused in Linux 2.6)
+	Data     uint64 `json:"data"`     // data + stack
+	Dirty    uint64 `json:"dirty"`    // dirty pages (unused in Linux 2.6)
+}
+
 type ProcessStat struct{}
 
 func ReadProcess(pid uint64, path string) (*Process, error) {
@@ -41,22 +51,26 @@ func ReadProcess(pid uint64, path string) (*Process, error) {
 
 	process := Process{}
 
-	ioPath := filepath.Join(p, "io")
 	statPath := filepath.Join(p, "stat")
-	statmPath := filepath.Join(p, "statm")
 	statusPath := filepath.Join(p, "status")
 
-	io, err := ReadProcessIO(ioPath)
+	var err error
+	var io *ProcessIO
+	var statm *ProcessStatm
 
-	if err != nil {
+	if io, err = ReadProcessIO(filepath.Join(p, "io")); err != nil {
+		return nil, err
+	}
+
+	if statm, err = ReadProcessStatm(filepath.Join(p, "statm")); err != nil {
 		return nil, err
 	}
 
 	_ = statPath
-	_ = statmPath
 	_ = statusPath
 
 	process.IO = *io
+	process.Statm = *statm
 
 	return &process, nil
 }
@@ -121,6 +135,48 @@ func ReadProcessIO(path string) (*ProcessIO, error) {
 	}
 
 	return &io, nil
+}
+
+func ReadProcessStatm(path string) (*ProcessStatm, error) {
+
+	b, err := ioutil.ReadFile(path)
+
+	if err != nil {
+		return nil, err
+	}
+
+	s := string(b)
+	f := strings.Fields(s)
+
+	statm := ProcessStatm{}
+
+	var n uint64
+
+	for i := 0; i < 7; i++ {
+
+		if n, err = strconv.ParseUint(f[i], 10, 0); err != nil {
+			return nil, err
+		}
+
+		switch i {
+		case 0:
+			statm.Size = n
+		case 1:
+			statm.Resident = n
+		case 2:
+			statm.Share = n
+		case 3:
+			statm.Text = n
+		case 4:
+			statm.Lib = n
+		case 5:
+			statm.Data = n
+		case 6:
+			statm.Dirty = n
+		}
+	}
+
+	return &statm, nil
 }
 
 func ReadMaxPID(path string) (uint64, error) {
