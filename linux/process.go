@@ -18,6 +18,7 @@ type Process struct {
 
 type ProcessStatus struct{}
 
+// I/O statistics for the process.
 type ProcessIO struct {
 	RChar               uint64 `json:"rchar" field:"rchar"`                                 // chars read
 	WChar               uint64 `json:"wchar" field:"wchar"`                                 // chars written
