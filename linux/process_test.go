@@ -211,8 +211,6 @@ func TestMaxPID(t *testing.T) {
 		t.Fatal("max pid read fail", err)
 	}
 
-	_ = max
-
 	if max != 32768 {
 		t.Error("unexpected value")
 	}
@@ -228,8 +226,6 @@ func TestListPID(t *testing.T) {
 	if err != nil {
 		t.Fatal("list pid fail", err)
 	}
-
-	_ = list
 
 	var expected = []uint64{3323}
 
