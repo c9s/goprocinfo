@@ -3,7 +3,7 @@ package linux
 import "testing"
 import "reflect"
 
-func TestSockstat(t *testing.T) {
+func TestSockStat(t *testing.T) {
 	var expected = SockStat{231, 27, 1, 23, 31, 3, 19, 17, 0, 0, 0, 0}
 
 	sockStat, err := ReadSockStat("proc/sockstat")

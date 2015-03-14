@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-type Netstat struct {
+type NetStat struct {
 	// TcpExt
 	SyncookiesSent            uint64 `json:"syncookie_sent"`
 	SyncookiesRecv            uint64 `json:"syncookies_recv"`
@@ -133,7 +133,7 @@ type Netstat struct {
 	InCEPkts        uint64 `json:"in_ce_pkts"`
 }
 
-func ReadNetstat(path string) (*Netstat, error) {
+func ReadNetStat(path string) (*NetStat, error) {
 	data, err := ioutil.ReadFile(path)
 
 	if err != nil {
@@ -158,7 +158,7 @@ func ReadNetstat(path string) (*Netstat, error) {
 		}
 	}
 
-	var netstat Netstat = Netstat{}
+	var netstat NetStat = NetStat{}
 
 	elem := reflect.ValueOf(&netstat).Elem()
 	typeOfElem := elem.Type()
