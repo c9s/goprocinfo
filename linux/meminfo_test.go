@@ -16,7 +16,7 @@ func TestMemInfo(t *testing.T) {
 		}
 		t.Logf("%+v", read)
 
-		if err := compareExpectedReadFieldsMeminfo(&expected, read); err != nil {
+		if err := compareExpectedReadFieldsMemInfo(&expected, read); err != nil {
 			t.Error(err.Error())
 		}
 
@@ -33,7 +33,7 @@ func TestMemInfo(t *testing.T) {
 		}
 		t.Logf("%+v", read)
 
-		if err := compareExpectedReadFieldsMeminfo(&expected, read); err != nil {
+		if err := compareExpectedReadFieldsMemInfo(&expected, read); err != nil {
 			t.Error(err.Error())
 		}
 
@@ -44,7 +44,7 @@ func TestMemInfo(t *testing.T) {
 }
 
 //This is a helper function which makes it easier to track down errors in expected versus read values.
-func compareExpectedReadFieldsMeminfo(expected *MemInfo, read *MemInfo) error {
+func compareExpectedReadFieldsMemInfo(expected *MemInfo, read *MemInfo) error {
 	elemExpected := reflect.ValueOf(*expected)
 	typeOfElemExpected := elemExpected.Type()
 	elemRead := reflect.ValueOf(*read)
