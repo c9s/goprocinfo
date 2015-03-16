@@ -71,7 +71,20 @@ func ReadProcessStat(path string) (*ProcessStat, error) {
 	}
 
 	s := string(b)
-	f := strings.Fields(s)
+
+	f := make([]string, 0, 32)
+
+	// 1st Split
+	f1 := strings.Split(s, "(")
+	f = append(f, strings.TrimSpace(f1[0]))
+
+	// 2nd Split
+	f2 := strings.Split(f1[1], ")")
+	f = append(f, f2[0])
+
+	// Final Split
+	f3 := strings.Fields(f2[1])
+	f = append(f, f3...)
 
 	stat := ProcessStat{}
 
@@ -82,7 +95,7 @@ func ReadProcessStat(path string) (*ProcessStat, error) {
 				return nil, err
 			}
 		case 1:
-			stat.Comm = f[i]
+			stat.Comm = "(" + f[i] + ")"
 		case 2:
 			stat.State = f[i]
 		case 3:
