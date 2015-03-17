@@ -1,7 +1,6 @@
 package linux
 
 import (
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -14,41 +13,43 @@ type Process struct {
 	IO     ProcessIO     `json:"io"`
 }
 
-type ProcessStatus struct{}
-type ProcessIO struct{}
-type ProcessStatm struct{}
-type ProcessStat struct{}
+func ReadProcess(pid uint64, path string) (*Process, error) {
 
-func ReadProcess(pid int, baseDir string) (*Process, error) {
-	var pidDir = filepath.Join(baseDir, strconv.Itoa(pid))
+	var err error
 
-	if _, err := os.Stat(pidDir); err != nil {
+	p := filepath.Join(path, strconv.FormatUint(pid, 10))
+
+	if _, err = os.Stat(p); err != nil {
 		return nil, err
 	}
+
 	process := Process{}
 
-	var ioFile = filepath.Join(pidDir, "io")
-	var statFile = filepath.Join(pidDir, "stat")
-	var statmFile = filepath.Join(pidDir, "statm")
-	var statusFile = filepath.Join(pidDir, "status")
+	var io *ProcessIO
+	var stat *ProcessStat
+	var statm *ProcessStatm
+	var status *ProcessStatus
 
-	_ = ioFile
-	_ = statFile
-	_ = statmFile
-	_ = statusFile
+	if io, err = ReadProcessIO(filepath.Join(p, "io")); err != nil {
+		return nil, err
+	}
+
+	if stat, err = ReadProcessStat(filepath.Join(p, "stat")); err != nil {
+		return nil, err
+	}
+
+	if statm, err = ReadProcessStatm(filepath.Join(p, "statm")); err != nil {
+		return nil, err
+	}
+
+	if status, err = ReadProcessStatus(filepath.Join(p, "status")); err != nil {
+		return nil, err
+	}
+
+	process.IO = *io
+	process.Stat = *stat
+	process.Statm = *statm
+	process.Status = *status
 
 	return &process, nil
 }
-
-func ReadProcessStatus(path string) (*ProcessStatus, error) {
-	b, err := ioutil.ReadFile(path)
-	if err != nil {
-		return nil, err
-	}
-	status := ProcessStatus{}
-	_ = b
-	return &status, nil
-}
-
-// process info reader
-// https://github.com/sharyanto/scripts/blob/master/explain-proc-stat
