@@ -7,10 +7,11 @@ import (
 )
 
 type Process struct {
-	Status ProcessStatus `json:"status"`
-	Statm  ProcessStatm  `json:"statm"`
-	Stat   ProcessStat   `json:"stat"`
-	IO     ProcessIO     `json:"io"`
+	Status  ProcessStatus `json:"status"`
+	Statm   ProcessStatm  `json:"statm"`
+	Stat    ProcessStat   `json:"stat"`
+	IO      ProcessIO     `json:"io"`
+	Cmdline string        `json:"cmdline"`
 }
 
 func ReadProcess(pid uint64, path string) (*Process, error) {
@@ -29,6 +30,7 @@ func ReadProcess(pid uint64, path string) (*Process, error) {
 	var stat *ProcessStat
 	var statm *ProcessStatm
 	var status *ProcessStatus
+	var cmdline string
 
 	if io, err = ReadProcessIO(filepath.Join(p, "io")); err != nil {
 		return nil, err
@@ -46,10 +48,15 @@ func ReadProcess(pid uint64, path string) (*Process, error) {
 		return nil, err
 	}
 
+	if cmdline, err = ReadProcessCmdline(filepath.Join(p, "cmdline")); err != nil {
+		return nil, err
+	}
+
 	process.IO = *io
 	process.Stat = *stat
 	process.Statm = *statm
 	process.Status = *status
+	process.Cmdline = cmdline
 
 	return &process, nil
 }

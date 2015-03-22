@@ -28,7 +28,7 @@ func TestListPID(t *testing.T) {
 		t.Fatal("list pid fail", err)
 	}
 
-	var expected = []uint64{884, 3323}
+	var expected = []uint64{884, 3323, 5811}
 
 	if !reflect.DeepEqual(list, expected) {
 		t.Error("not equal to expected", expected)

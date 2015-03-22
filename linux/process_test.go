@@ -123,6 +123,7 @@ func TestReadProcess(t *testing.T) {
 			WriteBytes:          45056,
 			CancelledWriteBytes: 0,
 		},
+		Cmdline: "proftpd: (accepting connections)",
 	}
 
 	if !reflect.DeepEqual(p, expected) {
