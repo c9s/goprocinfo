@@ -42,9 +42,9 @@ func createCPUStat(fields []string) *CPUStat {
 		case 1:
 			s.User = v
 		case 2:
-			s.System = v
-		case 3:
 			s.Nice = v
+		case 3:
+			s.System = v
 		case 4:
 			s.Idle = v
 		case 5:
