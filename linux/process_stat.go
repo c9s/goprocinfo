@@ -2,6 +2,7 @@ package linux
 
 import (
 	"io/ioutil"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -62,6 +63,8 @@ type ProcessStat struct {
 	ExitCode            int64  `json:"exit_code"`
 }
 
+var processStatRegExp = regexp.MustCompile("^(\\d+)( \\(.*?\\) )(.*)$")
+
 func ReadProcessStat(path string) (*ProcessStat, error) {
 
 	b, err := ioutil.ReadFile(path)
@@ -74,17 +77,16 @@ func ReadProcessStat(path string) (*ProcessStat, error) {
 
 	f := make([]string, 0, 32)
 
-	// 1st Split
-	f1 := strings.Split(s, "(")
-	f = append(f, strings.TrimSpace(f1[0]))
+	e := processStatRegExp.FindStringSubmatch(strings.TrimSpace(s))
 
-	// 2nd Split
-	f2 := strings.Split(f1[1], ")")
-	f = append(f, f2[0])
+	// Inject process Pid
+	f = append(f, e[1])
 
-	// Final Split
-	f3 := strings.Fields(f2[1])
-	f = append(f, f3...)
+	// Inject process Comm
+	f = append(f, strings.TrimSpace(e[2]))
+
+	// Inject all remaining process info
+	f = append(f, (strings.Fields(e[3]))...)
 
 	stat := ProcessStat{}
 
@@ -95,7 +97,7 @@ func ReadProcessStat(path string) (*ProcessStat, error) {
 				return nil, err
 			}
 		case 1:
-			stat.Comm = "(" + f[i] + ")"
+			stat.Comm = f[i]
 		case 2:
 			stat.State = f[i]
 		case 3:
