@@ -61,7 +61,7 @@ func TestReadProcessStat(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(stat, expected) {
-		t.Error("not equal to expected", expected)
+		t.Errorf("not equal to expected %+v", expected)
 	}
 
 	t.Logf("%+v", stat)
@@ -123,7 +123,69 @@ func TestReadProcessStatWithSpace(t *testing.T) {
 	}
 
 	if !reflect.DeepEqual(stat, expected) {
-		t.Error("not equal to expected", expected)
+		t.Errorf("not equal to expected %+v", expected)
+	}
+
+	t.Logf("%+v", stat)
+}
+
+func TestReadProcessStatWithDoubleParentheses(t *testing.T) {
+
+	stat, err := ReadProcessStat("proc/4854/stat")
+
+	if err != nil {
+		t.Fatal("process stat read fail", err)
+	}
+
+	expected := &ProcessStat{
+		Pid:                 4854,
+		Comm:                "((sd-pam))",
+		State:               "S",
+		Ppid:                4853,
+		Pgrp:                4853,
+		Session:             4853,
+		TtyNr:               0,
+		Tpgid:               -1,
+		Flags:               1077944640,
+		Minflt:              21,
+		Cminflt:             0,
+		Majflt:              0,
+		Cmajflt:             0,
+		Utime:               0,
+		Stime:               0,
+		Cutime:              0,
+		Cstime:              0,
+		Priority:            20,
+		Nice:                0,
+		NumThreads:          1,
+		Itrealvalue:         0,
+		Starttime:           4912,
+		Vsize:               83931136,
+		Rss:                 405,
+		Rsslim:              18446744073709551615,
+		Startcode:           1,
+		Endcode:             1,
+		Startstack:          0,
+		Kstkesp:             0,
+		Kstkeip:             0,
+		Signal:              0,
+		Blocked:             0,
+		Sigignore:           4096,
+		Sigcatch:            0,
+		Wchan:               18446744073709551615,
+		Nswap:               0,
+		Cnswap:              0,
+		ExitSignal:          17,
+		Processor:           7,
+		RtPriority:          0,
+		Policy:              0,
+		DelayacctBlkioTicks: 0,
+		GuestTime:           0,
+		CguestTime:          0,
+	}
+
+	if !reflect.DeepEqual(stat, expected) {
+		t.Errorf("not equal to expected %+v", expected)
 	}
 
 	t.Logf("%+v", stat)
