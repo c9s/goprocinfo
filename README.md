@@ -7,19 +7,23 @@ Usage
 ---------------
 
 ```go
-import linuxproc "github.com/c9s/goprocinfo/linux"
+import (
+	"log"
+
+	linuxproc "github.com/c9s/goprocinfo/linux"
+)
 
 stat, err := linuxproc.ReadStat("/proc/stat")
 if err != nil {
-    t.Fatal("stat read fail")
+	log.Fatal("stat read fail")
 }
 
 for _, s := range stat.CPUStats {
-    // s.User
-    // s.Nice
-    // s.System
-    // s.Idle
-    // s.IOWait
+	// s.User
+	// s.Nice
+	// s.System
+	// s.Idle
+	// s.IOWait
 }
 
 // stat.CPUStatAll
@@ -28,6 +32,11 @@ for _, s := range stat.CPUStats {
 // stat.BootTime
 // ... etc
 ```
+
+Documentation
+---------------
+
+Full documentation is available at [Godoc](https://godoc.org/github.com/c9s/goprocinfo/linux).
 
 
 Reference
