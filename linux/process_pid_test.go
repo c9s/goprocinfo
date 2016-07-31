@@ -7,7 +7,7 @@ import (
 
 func TestMaxPID(t *testing.T) {
 
-	max, err := ReadMaxPID("proc/sys_kernel_pid_max")
+	max, err := ReadMaxPID("proc/sys/kernel/pid_max")
 
 	if err != nil {
 		t.Fatal("max pid read fail", err)
