@@ -1,0 +1,40 @@
+           CPU0       CPU1       CPU2       CPU3
+  0:         33          0          0          0  IR-IO-APIC   2-edge      timer
+  1:          9      54459          0          0  IR-IO-APIC   1-edge      i8042
+  8:          1          0          0          0  IR-IO-APIC   8-edge      rtc0
+  9:        483     113479          0          0  IR-IO-APIC   9-fasteoi   acpi
+ 12:        485     892656          0          0  IR-IO-APIC  12-edge      i8042
+ 16:        231     502398     347250          0  IR-IO-APIC  16-fasteoi   ehci_hcd:usb1, mmc0
+ 18:          0          0          0          0  IR-IO-APIC  18-fasteoi   i801_smbus
+ 23:         96          0          0          0  IR-IO-APIC  23-fasteoi   ehci_hcd:usb2
+ 24:          0          0          0          0  DMAR-MSI   0-edge      dmar0
+ 25:          0          0          0          0  DMAR-MSI   1-edge      dmar1
+ 26:      16280     353357     202838     268722  IR-PCI-MSI 512000-edge      ahci[0000:00:1f.2]
+ 27:          0          0          0          0  IR-PCI-MSI 7340032-edge      xhci_hcd
+ 28:          0          0          0          0  IR-PCI-MSI 7340033-edge      xhci_hcd
+ 29:          0          0          0          0  IR-PCI-MSI 7340034-edge      xhci_hcd
+ 30:          0          0          0          0  IR-PCI-MSI 7340035-edge      xhci_hcd
+ 31:          0          0          0          0  IR-PCI-MSI 7340036-edge      xhci_hcd
+ 32:          5   24451422    1358393     428532  IR-PCI-MSI 409600-edge      enp0s25
+ 33:        168     128844       9767     120661  IR-PCI-MSI 32768-edge      i915
+ 34:         26          0          0          0  IR-PCI-MSI 360448-edge      mei_me
+ 35:        448      51693   12270675    4334117  IR-PCI-MSI 1572864-edge      iwlwifi
+ 36:        984        660          0          0  IR-PCI-MSI 442368-edge      snd_hda_intel:card0
+NMI:        311        299        347        270   Non-maskable interrupts
+LOC:   11505484    9852953   12103358    9189099   Local timer interrupts
+SPU:          0          0          0          0   Spurious interrupts
+PMI:        311        299        347        270   Performance monitoring interrupts
+IWI:          1         12          1          0   IRQ work interrupts
+RTR:          0          0          0          0   APIC ICR read retries
+RES:    1754911    1413022    1326780    1070668   Rescheduling interrupts
+CAL:     620724     590753     618845     579947   Function call interrupts
+TLB:     616691     586659     614670     575941   TLB shootdowns
+TRM:          0          0          0          0   Thermal event interrupts
+THR:          0          0          0          0   Threshold APIC interrupts
+DFR:          0          0          0          0   Deferred Error APIC interrupts
+MCE:          0          0          0          0   Machine check exceptions
+MCP:       1802       1802       1802       1802   Machine check polls
+ERR:          0
+MIS:          0
+PIN:          0          0          0          0   Posted-interrupt notification event
+PIW:          0          0          0          0   Posted-interrupt wakeup event
