@@ -97,23 +97,23 @@ func ReadCPUInfo(path string) (*CPUInfo, error) {
 
 		switch key {
 		case "processor":
-			processor.Id, _ = strconv.ParseInt(value, 10, 32)
+			processor.Id, _ = strconv.ParseInt(value, 10, 64)
 		case "vendor_id":
 			processor.VendorId = value
 		case "model":
-			processor.Model, _ = strconv.ParseInt(value, 10, 32)
+			processor.Model, _ = strconv.ParseInt(value, 10, 64)
 		case "model name":
 			processor.ModelName = value
 		case "flags":
 			processor.Flags = strings.Fields(value)
 		case "cpu cores":
-			processor.Cores, _ = strconv.ParseInt(value, 10, 32)
+			processor.Cores, _ = strconv.ParseInt(value, 10, 64)
 		case "cpu MHz":
 			processor.MHz, _ = strconv.ParseFloat(value, 64)
 		case "physical id":
-			processor.PhysicalId, _ = strconv.ParseInt(value, 10, 32)
+			processor.PhysicalId, _ = strconv.ParseInt(value, 10, 64)
 		case "core id":
-			processor.CoreId, _ = strconv.ParseInt(value, 10, 32)
+			processor.CoreId, _ = strconv.ParseInt(value, 10, 64)
 		}
 		/*
 			processor	: 0
