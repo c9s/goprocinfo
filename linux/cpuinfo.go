@@ -60,6 +60,7 @@ type Processor struct {
 	Flags      []string `json:"flags"`
 	Cores      int64    `json:"cores"`
 	MHz        float64  `json:"mhz"`
+	CacheSize  int64    `json:"cache_size"` // KB
 	PhysicalId int64    `json:"physical_id"`
 	CoreId     int64    `json:"core_id"`
 }
@@ -110,6 +111,11 @@ func ReadCPUInfo(path string) (*CPUInfo, error) {
 			processor.Cores, _ = strconv.ParseInt(value, 10, 64)
 		case "cpu MHz":
 			processor.MHz, _ = strconv.ParseFloat(value, 64)
+		case "cache size":
+			processor.CacheSize, _ = strconv.ParseInt(value[:strings.IndexAny(value, " \t\n")], 10, 64)
+			if strings.HasSuffix(line, "MB") {
+				processor.CacheSize *= 1024
+			}
 		case "physical id":
 			processor.PhysicalId, _ = strconv.ParseInt(value, 10, 64)
 		case "core id":
