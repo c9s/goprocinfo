@@ -41,7 +41,7 @@ func ReadNetUnixDomainSockets(fpath string) (*NetUnixDomainSockets, error) {
 		}
 
 		socket := NetUnixDomainSocket{}
-		if socket.RefCount, err = strconv.ParseUint(f[1], 10, 64); err != nil {
+		if socket.RefCount, err = strconv.ParseUint(f[1], 16, 64); err != nil {
 			return nil, errors.New("Cannot parse unix domain socket [invalid RefCount]: " + f[1])
 		}
 
