@@ -47,11 +47,17 @@ func TestReadNetTCP(t *testing.T) {
 				RetransmitTimeout: 29, PredictedTick: 4, AckQuick: 13, AckPingpong: true,
 				SendingCongestionWindow: 10, SlowStartSizeThreshold: -1,
 			},
+			NetTCPSocket{
+				NetSocket: NetSocket{
+					LocalAddress: "10.0.7.22:23", RemoteAddress: "10.0.251.12:53281", Status: 6,
+					TxQueue: 96, RxQueue: 0, Uid: 0, Inode: 582338, SocketReferenceCount: 4,
+				},
+			},
 		},
 	}
 
 	if !reflect.DeepEqual(tcp, expected) {
-		t.Errorf("not equal to expected %+v", expected)
+		t.Errorf("not equal to expected:\n  %+v\n  %+v", tcp, expected)
 	}
 
 	t.Logf("%+v", tcp)
