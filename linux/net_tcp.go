@@ -28,7 +28,7 @@ func ReadNetTCPSockets(path string, ip NetIPDecoder) (*NetTCPSockets, error) {
 		return nil, err
 	}
 
-	lines := strings.Split(string(b), "\n")
+	lines := strings.Split(strings.TrimRight(string(b), "\n "), "\n")
 
 	tcp := &NetTCPSockets{}
 
