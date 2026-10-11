@@ -1,6 +1,7 @@
 package linux
 
 import (
+	"fmt"
 	"io/ioutil"
 	"strconv"
 	"strings"
@@ -49,6 +50,7 @@ type ProcessStatus struct {
 	CapBnd                   uint64
 	Seccomp                  uint8
 	CpusAllowed              []uint32
+	CpusAllowedList          []uint32
 	MemsAllowed              []uint32
 	VoluntaryCtxtSwitches    uint64
 	NonvoluntaryCtxtSwitches uint64
@@ -72,7 +74,7 @@ func ReadProcessStatus(path string) (*ProcessStatus, error) {
 			continue
 		}
 
-		l := strings.Split(line, ":")
+		l := strings.SplitN(line, ":", 2)
 
 		k := strings.TrimSpace(l[0])
 		v := strings.TrimSpace(l[1])
@@ -300,6 +302,12 @@ func ReadProcessStatus(path string) (*ProcessStatus, error) {
 				}
 
 			}
+		case "Cpus_allowed_list":
+			{
+				if status.CpusAllowedList, err = ParseCPUList(v); err != nil {
+					return nil, err
+				}
+			}
 		case "Mems_allowed":
 			{
 
@@ -328,4 +336,78 @@ func ReadProcessStatus(path string) (*ProcessStatus, error) {
 	}
 
 	return &status, nil
+}
+
+// ParseCPUList parses a Linux CPU list format (e.g., "0-3,5,7-9") into a slice of CPU IDs.
+func ParseCPUList(s string) ([]uint32, error) {
+	s = strings.TrimSpace(s)
+	if s == "" {
+		return nil, nil
+	}
+
+	var cpus []uint32
+	parts := strings.Split(s, ",")
+	for _, part := range parts {
+		part = strings.TrimSpace(part)
+		if part == "" {
+			continue
+		}
+
+		if strings.Contains(part, "-") {
+			rangeParts := strings.Split(part, "-")
+			if len(rangeParts) != 2 {
+				return nil, fmt.Errorf("invalid cpu range: %s", part)
+			}
+			startStr := strings.TrimSpace(rangeParts[0])
+			start, err := strconv.ParseUint(startStr, 10, 32)
+			if err != nil {
+				return nil, err
+			}
+
+			endStr := strings.TrimSpace(rangeParts[1])
+			stride := uint64(1)
+			if strings.Contains(endStr, ":") {
+				strideParts := strings.Split(endStr, ":")
+				if len(strideParts) != 2 {
+					return nil, fmt.Errorf("invalid stride in cpu range: %s", part)
+				}
+				endStr = strings.TrimSpace(strideParts[0])
+				stride, err = strconv.ParseUint(strings.TrimSpace(strideParts[1]), 10, 32)
+				if err != nil || stride == 0 {
+					return nil, fmt.Errorf("invalid stride in cpu range: %s", part)
+				}
+			} else if strings.Contains(endStr, "/") {
+				strideParts := strings.Split(endStr, "/")
+				if len(strideParts) != 2 {
+					return nil, fmt.Errorf("invalid stride in cpu range: %s", part)
+				}
+				endStr = strings.TrimSpace(strideParts[0])
+				stride, err = strconv.ParseUint(strings.TrimSpace(strideParts[1]), 10, 32)
+				if err != nil || stride == 0 {
+					return nil, fmt.Errorf("invalid stride in cpu range: %s", part)
+				}
+			}
+
+			end, err := strconv.ParseUint(endStr, 10, 32)
+			if err != nil {
+				return nil, err
+			}
+
+			if start > end {
+				return nil, fmt.Errorf("invalid cpu range start > end: %s", part)
+			}
+
+			for i := start; i <= end; i += stride {
+				cpus = append(cpus, uint32(i))
+			}
+		} else {
+			cpu, err := strconv.ParseUint(part, 10, 32)
+			if err != nil {
+				return nil, err
+			}
+			cpus = append(cpus, uint32(cpu))
+		}
+	}
+
+	return cpus, nil
 }

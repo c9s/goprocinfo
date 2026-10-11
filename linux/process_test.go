@@ -56,6 +56,7 @@ func TestReadProcess(t *testing.T) {
 			CapBnd:                   18446744073709551615,
 			Seccomp:                  0,
 			CpusAllowed:              []uint32{255},
+			CpusAllowedList:          []uint32{0, 1, 2, 3, 4, 5, 6, 7},
 			VoluntaryCtxtSwitches:    5899,
 			NonvoluntaryCtxtSwitches: 26,
 		},
